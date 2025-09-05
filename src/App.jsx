@@ -5,9 +5,10 @@ import './index.css';
 
 export default function App() {
 	return (
-		<div className='flex flex-col h-screen'>
-			<div className='flex flex-1'>
+		<div className="flex h-screen flex-col">
+			<div className="flex flex-1">
 				<Sidebar />
+				<Navbar />
 				<Dashboard />
 			</div>
 		</div>

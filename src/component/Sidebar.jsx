@@ -1,6 +1,6 @@
 export default function Sidebar() {
 	return (
-		<aside className="bg-highlight p-md flex h-screen w-fit flex-col justify-between shadow-md">
+		<aside className="bg-highlight p-md z-100 flex h-screen w-fit flex-col justify-between shadow-md">
 			<ul className="space-y-4">
 				<li>
 					<a href="#" className="flex items-center space-x-4 font-semibold">
