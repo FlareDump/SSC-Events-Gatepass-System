@@ -26,7 +26,7 @@ export default function History() {
 			section: 'BSIT 2-1',
 			code: 'GP003',
 			status: 'Successful',
-			startTime: '2025-09-06 10:45 AM',
+			startTime: '10:45 AM',
 			endTime: '11:30 AM',
 		},
 	]);

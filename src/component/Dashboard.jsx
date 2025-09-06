@@ -92,7 +92,7 @@ export default function Dashboard() {
 	const activeStudents = students.filter((s) => s.status === 'On Gatepass');
 
 	return (
-		<div className="bg-accent mt-20 flex px-10 py-6">
+		<div className="bg-accent flex">
 			<div className="flex w-full gap-10">
 				{/* Left Side - Form */}
 				<div className="bg-accent w-[35vw] rounded-lg p-6 shadow-md">
@@ -169,7 +169,7 @@ export default function Dashboard() {
 							No active gatepass entries
 						</div>
 					) : (
-						<div className="overflow-x-auto">
+						<div className="max-h-[70vh] overflow-x-auto overflow-y-auto">
 							<table className="bg-accent w-full overflow-hidden rounded-md shadow-sm">
 								<thead className="bg-primary text-light">
 									<tr>
