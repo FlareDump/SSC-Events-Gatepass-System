@@ -1,15 +1,19 @@
 import Navbar from './component/Navbar';
 import Sidebar from './component/Sidebar';
 import Dashboard from './component/Dashboard';
+import Violates from './component/Violates';
+import History from './component/History';
 import './index.css';
 
 export default function App() {
 	return (
 		<div className="flex h-screen flex-col">
 			<div className="flex flex-1">
-				<Sidebar />
-				<Navbar />
-				<Dashboard />
+				{/* <Sidebar /> */}
+				{/* <Navbar /> */}
+				{/* <Dashboard /> */}
+				{/* <Violates /> */}
+				<History />
 			</div>
 		</div>
 	);
