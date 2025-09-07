@@ -95,7 +95,7 @@ export default function Dashboard() {
 		<div className="bg-accent flex">
 			<div className="flex w-full gap-10">
 				{/* Left Side - Form */}
-				<div className="bg-accent w-[35vw] rounded-lg p-6 shadow-md">
+				<div className="bg-accent max-h-[55vh] w-[35vw] rounded-lg p-6 shadow-md">
 					<div className="space-y-4">
 						<div>
 							<label className="text-dark mb-2 block text-sm font-semibold">
