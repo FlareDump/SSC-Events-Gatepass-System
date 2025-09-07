@@ -91,6 +91,41 @@
   --transition: all 0.3s ease;
 }
 
+/* Dark Mode Colors */
+.dark {
+  /* Primary Colors - Adjusted for dark mode */
+  --color-primary: #4A9EE0;   /* Lighter STI Blue for better contrast */
+  --color-secondary: #FEF200; /* Keep STI Yellow (works well on dark) */
+  --color-highlight: #66B3E6; /* Even lighter blue for highlights */
+  --color-accent: #2d3748;    /* Dark accent background */
+  --color-dark: #f7fafc;      /* Light text (inverted) */
+  --color-gray: #a0aec0;      /* Lighter gray for better readability */
+  --color-light: #2d3748;     /* Dark background (inverted) */
+  --color-success: #38d9a9;   /* Brighter green for dark mode */
+  --color-warning: #f6e05e;   /* Brighter yellow for warnings */
+  --color-danger: #fc8181;    /* Lighter red for better contrast */
+
+  /* Background Colors */
+  --bg-primary: #1a202c;      /* Dark main background */
+  --bg-secondary: #2d3748;    /* Dark secondary background */
+  --bg-tertiary: #4a5568;     /* Dark tertiary background */
+
+  /* Text Colors */
+  --text-primary: #f7fafc;    /* Light primary text */
+  --text-secondary: #e2e8f0;  /* Light secondary text */
+  --text-muted: #a0aec0;      /* Muted light text */
+
+  /* Border Colors */
+  --border-primary: #4a5568;  /* Dark primary border */
+  --border-secondary: #2d3748; /* Dark secondary border */
+
+  /* Shadows - Adjusted for dark mode */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+
 /* =========================
    Global Styles
    ========================= */
@@ -109,7 +144,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 600;
   margin-bottom: var(--space-md);
-  color: var(--color-primary);
 }
 
 /* Buttons */
@@ -224,59 +258,4 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.5rem;
     font-size: 0.8rem;
   }
-}
-
-/*Animations*/
-
-.hide-left {
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: all 0.8s;
-}
-
-.show-left {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.hide-right {
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.8s;
-}
-
-.show-right {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.hide-top {
-    opacity: 0;
-    transform: translateY(-100%);
-    transition: all 0.8s;
-}
-
-.show-top {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.hide-bottom {
-    opacity: 0;
-    transform: translateY(100%);
-    transition: all 0.8s;
-}
-
-.show-bottom {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.hide-top-long {
-    transform: translateY(-100%);
-    transition: all 1s;
-}
-
-.show-top-long {
-    transform: translateY(0);
 }

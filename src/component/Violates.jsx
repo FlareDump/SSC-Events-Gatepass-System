@@ -28,16 +28,60 @@ export default function Violates() {
 		},
 	]);
 
+	// Enhanced click handler with animation effect
+	const handleButtonClick = (e, callback) => {
+		// Add click animation effect
+		const button = e.currentTarget;
+		button.style.transform = 'scale(0.95)';
+
+		// Add ripple effect
+		const ripple = document.createElement('span');
+		const rect = button.getBoundingClientRect();
+		const size = Math.max(rect.width, rect.height);
+		const x = e.clientX - rect.left - size / 2;
+		const y = e.clientY - rect.top - size / 2;
+
+		ripple.style.width = ripple.style.height = size + 'px';
+		ripple.style.left = x + 'px';
+		ripple.style.top = y + 'px';
+		ripple.classList.add('ripple');
+
+		const rippleContainer = button.querySelector('.ripple-container');
+		if (rippleContainer) {
+			rippleContainer.appendChild(ripple);
+		}
+
+		setTimeout(() => {
+			button.style.transform = 'scale(1)';
+			if (ripple && ripple.parentNode) {
+				ripple.parentNode.removeChild(ripple);
+			}
+		}, 300);
+
+		// Call the original callback if provided
+		if (callback) {
+			callback();
+		}
+	};
+
+	const handleLateAction = (studentId) => {
+		// Add your late action logic here
+		console.log(`Late action for student ID: ${studentId}`);
+		// You can update the student status or perform other actions
+	};
+
 	return (
 		<div className="">
 			<table className="bg-accent w-full overflow-hidden rounded-md shadow-sm">
 				<thead className="bg-primary text-light">
 					<tr>
-						<th className="px-10 py-3 font-semibold">Student Name</th>
-						<th className="px-10 py-3 font-semibold">Section</th>
-						<th className="px-10 py-3 font-semibold">Code</th>
-						<th className="px-10 py-3 font-semibold">Status</th>
-						<th className="px-10 py-3 font-semibold">Action</th>
+						<th className="px-10 py-3 text-center font-semibold">
+							Student Name
+						</th>
+						<th className="px-10 py-3 text-center font-semibold">Section</th>
+						<th className="px-10 py-3 text-center font-semibold">Code</th>
+						<th className="px-10 py-3 text-center font-semibold">Status</th>
+						<th className="px-10 py-3 text-center font-semibold">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,19 +92,46 @@ export default function Violates() {
 								index % 2 === 0 ? 'bg-danger/20' : 'bg-danger/10'
 							} hover:bg-secondary/30 transition-colors`}
 						>
-							<td className="px-4 py-3">{student.name}</td>
-							<td className="px-4 py-3">{student.section}</td>
-							<td className="px-4 py-3">{student.code}</td>
-							<td className="px-4 py-3">{student.status}</td>
-							<td className="px-4 py-3">
-								<button className="bg-primary text-light rounded px-2 py-1">
-									Late
+							<td className="px-4 py-3 text-center">{student.name}</td>
+							<td className="px-4 py-3 text-center">{student.section}</td>
+							<td className="px-4 py-3 text-center">{student.code}</td>
+							<td className="px-4 py-3 text-center">{student.status}</td>
+							<td className="px-4 py-3 text-center">
+								<button
+									onClick={(e) =>
+										handleButtonClick(e, () => handleLateAction(student.id))
+									}
+									className="bg-primary text-light relative transform cursor-pointer overflow-hidden rounded px-2 py-1 shadow-sm transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-105 hover:shadow-md focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none active:scale-95"
+								>
+									<div className="ripple-container absolute inset-0"></div>
+									<span className="relative z-10">Late</span>
 								</button>
 							</td>
 						</tr>
 					))}
 				</tbody>
 			</table>
+
+			<style jsx>{`
+				@keyframes ripple {
+					0% {
+						transform: scale(0);
+						opacity: 0.6;
+					}
+					100% {
+						transform: scale(4);
+						opacity: 0;
+					}
+				}
+
+				.ripple {
+					position: absolute;
+					border-radius: 50%;
+					background-color: rgba(255, 255, 255, 0.6);
+					animation: ripple 0.6s linear;
+					pointer-events: none;
+				}
+			`}</style>
 		</div>
 	);
 }

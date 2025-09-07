@@ -1,23 +1,125 @@
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 export default function Navbar(props) {
 	const navigate = useNavigate();
+	const [isDarkMode, setIsDarkMode] = useState(false);
+
+	// Check for saved dark mode preference on component mount
+	useEffect(() => {
+		const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+		setIsDarkMode(savedDarkMode);
+
+		// Apply dark mode class to document
+		if (savedDarkMode) {
+			document.documentElement.classList.add('dark');
+		} else {
+			document.documentElement.classList.remove('dark');
+		}
+	}, []);
+
+	// Enhanced click handler with animation effect
+	const handleButtonClick = (e, callback) => {
+		// Add click animation effect
+		const button = e.currentTarget;
+		button.style.transform = 'scale(0.95)';
+
+		// Add ripple effect
+		const ripple = document.createElement('span');
+		const rect = button.getBoundingClientRect();
+		const size = Math.max(rect.width, rect.height);
+		const x = e.clientX - rect.left - size / 2;
+		const y = e.clientY - rect.top - size / 2;
+
+		ripple.style.width = ripple.style.height = size + 'px';
+		ripple.style.left = x + 'px';
+		ripple.style.top = y + 'px';
+		ripple.classList.add('ripple');
+
+		const rippleContainer = button.querySelector('.ripple-container');
+		if (rippleContainer) {
+			rippleContainer.appendChild(ripple);
+		}
+
+		setTimeout(() => {
+			button.style.transform = 'scale(1)';
+			if (ripple && ripple.parentNode) {
+				ripple.parentNode.removeChild(ripple);
+			}
+		}, 300);
+
+		// Call the original callback
+		callback();
+	};
 
 	const handleLogout = () => {
 		// You can add any logout logic here (clear tokens, etc.)
 		navigate('/');
 	};
 
-	return (
-		<nav className="fixed top-0 right-0 left-85 flex items-center justify-between bg-white px-10 py-4 shadow-md">
-			<h1 className="translate-y-2 text-2xl font-bold">{props.name}</h1>
+	const toggleDarkMode = () => {
+		const newDarkMode = !isDarkMode;
+		setIsDarkMode(newDarkMode);
 
-			<button
-				onClick={handleLogout}
-				className="rounded-md bg-red-500 px-4 py-2 text-white transition duration-200 hover:bg-red-600 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none"
-			>
-				Logout
-			</button>
+		// Save preference to localStorage
+		localStorage.setItem('darkMode', newDarkMode.toString());
+
+		// Toggle dark class on document element
+		if (newDarkMode) {
+			document.documentElement.classList.add('dark');
+		} else {
+			document.documentElement.classList.remove('dark');
+		}
+	};
+
+	return (
+		<nav className="bg-accent fixed top-0 right-0 left-85 flex items-center justify-between px-10 py-4 shadow-md transition-colors duration-200">
+			<h1 className="text-primary translate-y-2 text-2xl font-bold">
+				{props.name}
+			</h1>
+			<div className="flex items-center space-x-15">
+				{/* Dark Mode Toggle Button */}
+				<button
+					onClick={(e) => handleButtonClick(e, toggleDarkMode)}
+					className="text-dark hover:bg-primary/10 relative transform cursor-pointer overflow-hidden rounded-full p-2 text-3xl transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-110 focus:outline-none active:scale-95"
+					aria-label="Toggle dark mode"
+				>
+					<div className="ripple-container absolute inset-0"></div>
+					<i
+						className={` ${isDarkMode ? 'fa-solid fa-lightbulb' : 'fa-regular fa-lightbulb'} relative z-10 transition-all duration-200 ${isDarkMode ? 'text-yellow-500' : 'text-gray-600'} hover:text-yellow-400`}
+					></i>
+				</button>
+
+				{/* Logout Button */}
+				<button
+					onClick={(e) => handleButtonClick(e, handleLogout)}
+					className="relative transform cursor-pointer overflow-hidden rounded-md bg-red-500 px-4 py-2 text-white shadow-sm transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-105 hover:bg-red-600 hover:shadow-md focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none active:scale-95"
+				>
+					<div className="ripple-container absolute inset-0"></div>
+					<span className="relative z-10 flex items-center gap-2">Logout</span>
+				</button>
+			</div>
+
+			<style jsx>{`
+				@keyframes ripple {
+					0% {
+						transform: scale(0);
+						opacity: 0.6;
+					}
+					100% {
+						transform: scale(4);
+						opacity: 0;
+					}
+				}
+
+				.ripple {
+					position: absolute;
+					border-radius: 50%;
+					background-color: rgba(255, 255, 255, 0.6);
+					animation: ripple 0.6s linear;
+					pointer-events: none;
+				}
+			`}</style>
 		</nav>
 	);
 }
