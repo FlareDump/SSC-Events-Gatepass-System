@@ -225,3 +225,58 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.8rem;
   }
 }
+
+/*Animations*/
+
+.hide-left {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.8s;
+}
+
+.show-left {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.hide-right {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.8s;
+}
+
+.show-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.hide-top {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 0.8s;
+}
+
+.show-top {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hide-bottom {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.8s;
+}
+
+.show-bottom {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hide-top-long {
+    transform: translateY(-100%);
+    transition: all 1s;
+}
+
+.show-top-long {
+    transform: translateY(0);
+}
