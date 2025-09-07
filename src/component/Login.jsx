@@ -7,7 +7,7 @@ export default function Login() {
 	const [error, setError] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 
-	const navigate = useNavigate(); // Add this line
+	const navigate = useNavigate();
 
 	// Constant user credentials for verification
 	const ADMIN_CREDENTIALS = {
@@ -20,7 +20,6 @@ export default function Login() {
 		setError('');
 		setIsLoading(true);
 
-		// Simulate a small delay for realistic feel
 		setTimeout(() => {
 			if (verifyLogin(email, password)) {
 				// Login successful - redirect to Gatepass
@@ -41,11 +40,9 @@ export default function Login() {
 	};
 
 	return (
-		<div className="flex min-h-screen items-center justify-center bg-gray-100">
-			<div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
-				<h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
-					Login
-				</h2>
+		<div className="bg-accent flex min-h-screen items-center justify-center">
+			<div className="bg-accebt w-full max-w-md rounded-lg p-8 shadow-lg">
+				<h2 className="mb-6 text-center text-2xl font-bold">Login</h2>
 				<img
 					src="/public/Logo/SSC Logo.png"
 					alt="SSC"
@@ -53,8 +50,8 @@ export default function Login() {
 				/>
 
 				{error && (
-					<div className="mb-4 rounded-md border border-red-200 bg-red-50 p-3">
-						<p className="text-sm text-red-600">{error}</p>
+					<div className="border-danger/20 bg-danger/10 mb-4 rounded-md border p-3">
+						<p className="text-danger text-sm">{error}</p>
 					</div>
 				)}
 
@@ -65,7 +62,7 @@ export default function Login() {
 							placeholder="Email"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
-							className="focus:ring-primary w-full rounded-md border border-gray-300 px-4 py-2 focus:ring-2 focus:outline-none"
+							className="focus:ring-primary border-gray w-full rounded-md border px-4 py-2 focus:ring-2 focus:outline-none"
 							required
 						/>
 					</div>
@@ -75,14 +72,14 @@ export default function Login() {
 							placeholder="Password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
-							className="focus:ring-primary w-full rounded-md border border-gray-300 px-4 py-2 focus:ring-2 focus:outline-none"
+							className="focus:ring-primary border-gray w-full rounded-md border px-4 py-2 focus:ring-2 focus:outline-none"
 							required
 						/>
 					</div>
 					<button
 						type="submit"
 						disabled={isLoading}
-						className={`w-full rounded-md py-2 text-white transition duration-200 ${
+						className={`text-light w-full rounded-md py-2 transition duration-200 ${
 							isLoading
 								? 'cursor-not-allowed bg-gray-400'
 								: 'bg-primary hover:bg-primary-dark'
@@ -93,12 +90,12 @@ export default function Login() {
 				</form>
 
 				{/* Development helper - remove in production */}
-				<div className="mt-6 rounded-md border border-blue-200 bg-blue-50 p-3">
-					<p className="text-xs font-medium text-blue-600">Test Credentials:</p>
-					<p className="text-xs text-blue-600">
+				<div className="border-primary/30 bg-primary/10 mt-6 rounded-md border p-3">
+					<p className="text-primary text-xs font-medium">Test Credentials:</p>
+					<p className="text-primary text-xs">
 						Email: {ADMIN_CREDENTIALS.email}
 					</p>
-					<p className="text-xs text-blue-600">
+					<p className="text-primary text-xs">
 						Password: {ADMIN_CREDENTIALS.password}
 					</p>
 				</div>
