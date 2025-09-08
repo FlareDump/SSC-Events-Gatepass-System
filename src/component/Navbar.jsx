@@ -52,11 +52,6 @@ export default function Navbar(props) {
 		callback();
 	};
 
-	const handleLogout = () => {
-		// You can add any logout logic here (clear tokens, etc.)
-		navigate('/');
-	};
-
 	const toggleDarkMode = () => {
 		const newDarkMode = !isDarkMode;
 		setIsDarkMode(newDarkMode);
@@ -73,11 +68,11 @@ export default function Navbar(props) {
 	};
 
 	return (
-		<nav className="bg-accent fixed top-0 right-0 left-85 flex items-center justify-between px-10 py-4 shadow-md transition-colors duration-200">
+		<nav className="bg-accent flex w-full items-center justify-between px-10 py-4 shadow-md transition-colors duration-200">
 			<h1 className="text-primary translate-y-2 text-2xl font-bold">
 				{props.name}
 			</h1>
-			<div className="flex items-center space-x-15">
+			<div className="flex items-center">
 				{/* Dark Mode Toggle Button */}
 				<button
 					onClick={(e) => handleButtonClick(e, toggleDarkMode)}
@@ -88,15 +83,6 @@ export default function Navbar(props) {
 					<i
 						className={` ${isDarkMode ? 'fa-solid fa-lightbulb' : 'fa-regular fa-lightbulb'} relative z-10 transition-all duration-200 ${isDarkMode ? 'text-yellow-500' : 'text-gray-600'} hover:text-yellow-400`}
 					></i>
-				</button>
-
-				{/* Logout Button */}
-				<button
-					onClick={(e) => handleButtonClick(e, handleLogout)}
-					className="relative transform cursor-pointer overflow-hidden rounded-md bg-red-500 px-4 py-2 text-white shadow-sm transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:scale-105 hover:bg-red-600 hover:shadow-md focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none active:scale-95"
-				>
-					<div className="ripple-container absolute inset-0"></div>
-					<span className="relative z-10 flex items-center gap-2">Logout</span>
 				</button>
 			</div>
 

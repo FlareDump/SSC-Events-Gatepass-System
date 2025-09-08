@@ -5,8 +5,8 @@ export default function History() {
 		{
 			id: 1,
 			name: 'Juan Dela Cruz',
-			section: 'BSIT 3-1',
-			code: 'GP001',
+			section: 'BSIT 301',
+			code: '01',
 			status: 'Successful',
 			startTime: '08:15 AM',
 			endTime: '09:00 AM',
@@ -14,18 +14,18 @@ export default function History() {
 		{
 			id: 2,
 			name: 'Maria Santos',
-			section: 'BSCS 2-2',
-			code: 'GP002',
-			status: 'Successful',
+			section: 'BSCS 501',
+			code: '02',
+			status: 'Late',
 			startTime: '09:30 AM',
 			endTime: '10:15 AM',
 		},
 		{
 			id: 3,
 			name: 'Jose Rivera',
-			section: 'BSIT 2-1',
-			code: 'GP003',
-			status: 'Successful',
+			section: 'BSIT 302',
+			code: '01',
+			status: 'DNR',
 			startTime: '10:45 AM',
 			endTime: '11:30 AM',
 		},
@@ -52,12 +52,12 @@ export default function History() {
 								index % 2 === 0 ? 'bg-danger/20' : 'bg-danger/10'
 							} hover:bg-secondary/30 transition-colors`}
 						>
-							<td className="px-4 py-3">{student.name}</td>
-							<td className="px-4 py-3">{student.section}</td>
-							<td className="px-4 py-3">{student.code}</td>
-							<td className="px-4 py-3">{student.startTime}</td>
-							<td className="px-4 py-3">{student.endTime}</td>
-							<td className="px-4 py-3">{student.status}</td>
+							<td className="px-4 py-3 text-center">{student.name}</td>
+							<td className="px-4 py-3 text-center">{student.section}</td>
+							<td className="px-4 py-3 text-center">{student.code}</td>
+							<td className="px-4 py-3 text-center">{student.startTime}</td>
+							<td className="px-4 py-3 text-center">{student.endTime}</td>
+							<td className="px-4 py-3 text-center">{student.status}</td>
 						</tr>
 					))}
 				</tbody>
