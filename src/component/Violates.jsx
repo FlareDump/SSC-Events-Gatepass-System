@@ -28,13 +28,10 @@ export default function Violates() {
 		},
 	]);
 
-	// Enhanced click handler with animation effect
 	const handleButtonClick = (e, callback) => {
-		// Add click animation effect
 		const button = e.currentTarget;
 		button.style.transform = 'scale(0.95)';
 
-		// Add ripple effect
 		const ripple = document.createElement('span');
 		const rect = button.getBoundingClientRect();
 		const size = Math.max(rect.width, rect.height);
@@ -58,21 +55,18 @@ export default function Violates() {
 			}
 		}, 300);
 
-		// Call the original callback if provided
 		if (callback) {
 			callback();
 		}
 	};
 
 	const handleLateAction = (studentId) => {
-		// Add your late action logic here
 		console.log(`Late action for student ID: ${studentId}`);
-		// You can update the student status or perform other actions
 	};
 
 	return (
-		<div className="">
-			<table className="bg-accent w-full overflow-hidden rounded-md shadow-sm">
+		<div className="table-container">
+			<table className="bg-accent scrollable-table w-full overflow-hidden rounded-md shadow-sm">
 				<thead className="bg-primary text-light">
 					<tr>
 						<th className="px-10 py-3 text-center font-semibold">
@@ -130,6 +124,31 @@ export default function Violates() {
 					background-color: rgba(255, 255, 255, 0.6);
 					animation: ripple 0.6s linear;
 					pointer-events: none;
+				}
+
+				.table-container {
+					max-height: 70vh; /* Changed to 70% of viewport height */
+					max-width: 100%; /* Fits parent container */
+					overflow-x: auto; /* Enables horizontal scrolling */
+					overflow-y: auto; /* Enables vertical scrolling */
+				}
+
+				.scrollable-table {
+					min-width: 800px; /* Ensures horizontal scrolling */
+					border-collapse: collapse;
+				}
+
+				.scrollable-table thead {
+					position: sticky;
+					top: 0;
+					z-index: 10;
+					background-color: #3b82f6; /* Fallback for bg-primary */
+					color: #ffffff; /* Fallback for text-light */
+				}
+
+				.scrollable-table th {
+					background-color: #3b82f6; /* Ensure th matches thead */
+					color: #ffffff; /* Ensure text is visible */
 				}
 			`}</style>
 		</div>

@@ -32,16 +32,18 @@ export default function History() {
 	]);
 
 	return (
-		<div className="">
-			<table className="bg-accent w-full overflow-hidden rounded-md shadow-sm">
+		<div className="table-container">
+			<table className="bg-accent scrollable-table w-full overflow-hidden rounded-md shadow-sm">
 				<thead className="bg-primary text-light">
 					<tr>
-						<th className="px-10 py-3 font-semibold">Student Name</th>
-						<th className="px-10 py-3 font-semibold">Section</th>
-						<th className="px-10 py-3 font-semibold">Code</th>
-						<th className="px-10 py-3 font-semibold">Time Start</th>
-						<th className="px-10 py-3 font-semibold">Time End</th>
-						<th className="px-10 py-3 font-semibold">Status</th>
+						<th className="px-10 py-3 text-center font-semibold">
+							Student Name
+						</th>
+						<th className="px-10 py-3 text-center font-semibold">Section</th>
+						<th className="px-10 py-3 text-center font-semibold">Code</th>
+						<th className="px-10 py-3 text-center font-semibold">Time Start</th>
+						<th className="px-10 py-3 text-center font-semibold">Time End</th>
+						<th className="px-10 py-3 text-center font-semibold">Status</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -62,6 +64,33 @@ export default function History() {
 					))}
 				</tbody>
 			</table>
+
+			<style jsx>{`
+				.table-container {
+					max-height: 70vh; /* Changed to 70% of viewport height */
+					max-width: 100%; /* Fits parent container */
+					overflow-x: auto; /* Enables horizontal scrolling */
+					overflow-y: auto; /* Enables vertical scrolling */
+				}
+
+				.scrollable-table {
+					min-width: 800px; /* Ensures horizontal scrolling */
+					border-collapse: collapse;
+				}
+
+				.scrollable-table thead {
+					position: sticky;
+					top: 0;
+					z-index: 10;
+					background-color: #3b82f6; /* Fallback for bg-primary */
+					color: #ffffff; /* Fallback for text-light */
+				}
+
+				.scrollable-table th {
+					background-color: #3b82f6; /* Ensure th matches thead */
+					color: #ffffff; /* Ensure text is visible */
+				}
+			`}</style>
 		</div>
 	);
 }

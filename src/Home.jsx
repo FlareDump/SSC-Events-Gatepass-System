@@ -16,7 +16,7 @@ export default function App() {
 	};
 
 	return (
-		<div className="bg-accent grid h-screen grid-cols-10 md:grid-cols-10">
+		<div className="bg-accent grid h-screen grid-cols-1 lg:grid-cols-10">
 			{/* Mobile Overlay */}
 			{sidebarOpen && (
 				<div
@@ -27,13 +27,13 @@ export default function App() {
 
 			{/* Sidebar */}
 			<div
-				className={`inset-y-0 left-0 z-50 col-span-2 w-full transform transition-transform duration-300 ease-in-out lg:static lg:inset-0 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} `}
+				className={`fixed inset-y-0 left-0 z-50 col-span-0 w-full transform transition-transform duration-300 ease-in-out lg:relative lg:col-span-2 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} `}
 			>
 				<Sidebar onClose={closeSidebar} />
 			</div>
 
 			{/* Main Area */}
-			<div className="col-span-8 min-w-0 flex-1 flex-col">
+			<div className="col-span-1 min-w-0 flex-1 flex-col lg:col-span-8">
 				<Navbar
 					name="Gatepass System"
 					onMenuClick={toggleSidebar}
